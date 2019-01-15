@@ -2,11 +2,14 @@ package com.luan.myapp.session_4;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     static final String TAG = "MainActivity";
@@ -22,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //Khoi tao intent
-                Intent intent = new Intent(MainActivity.this,ActivityTwo.class);
+                /*Intent intent = new Intent(MainActivity.this,ActivityTwo.class);
                 intent.putExtra("name","Nguyen Thanh Luan");
                 Bundle bundle = new Bundle();
                 bundle.putString("name","Nguyen Thanh Luan 2");
@@ -38,7 +41,16 @@ public class MainActivity extends AppCompatActivity {
                 user.setId(1);
                 user.setName("Luan");
                 intent.putExtra("user",user);
-                startActivity(intent);
+
+
+                //truyen arraylist
+                ArrayList<User> listUser = new ArrayList<User>();
+                listUser.add(user);
+                intent.putExtra("list",listUser);
+                startActivity(intent);*/
+
+                Intent intent = new Intent(MainActivity.this,ActivityTwo.class);
+                startActivityForResult(intent,1);
             }
         });
 
@@ -89,5 +101,23 @@ public class MainActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         Log.i(TAG,"onDestroy called");
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==1){
+            //xac dinh dc la activitytwo tra ve
+            if(resultCode==1){
+                //neu nhu du lieu tra ve ok
+                //lay du lieu ra
+                String dataString = data.getStringExtra("data");
+                Log.e(TAG,dataString);
+            }
+        }
+
+        if(requestCode==2){
+            //xac dinh dc la activitythree tra ve
+        }
     }
 }
