@@ -17,6 +17,7 @@ public class ActivityAddNewUser extends AppCompatActivity {
         setContentView(R.layout.activity_add_new_user);
         edtId=(EditText)findViewById(R.id.edIdUser);
         edtName=(EditText)findViewById(R.id.edName);
+        edtName.getText().toString();
         Button btnSave=(Button)findViewById(R.id.btnSave);
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
